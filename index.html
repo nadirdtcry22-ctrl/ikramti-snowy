@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Ikramti 🤍</title>
+<title>Snowy 🤍</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -21,7 +21,7 @@
     background: white;
     width: 90%;
     max-width: 340px;
-    height: 420px;
+    height: 430px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,.15);
     padding: 20px;
@@ -36,11 +36,12 @@
 
   p {
     margin-top: 8px;
+    font-size: 16px;
   }
 
   .btns {
     position: relative;
-    height: 160px;
+    height: 170px;
     margin-top: 30px;
   }
 
@@ -85,8 +86,8 @@
 <body>
 
 <div class="card">
-  <h1 id="text">Will you be my Valentine Ikramti 🤍❄️</h1>
-  <p>please don’t break my heart 🥺</p>
+  <h1 id="text">Will you be my Valentine Snowy 🤍❄️</h1>
+  <p id="sub">please don’t break my heart 🥺</p>
 
   <div class="btns">
     <button id="no">No 💔</button>
@@ -97,20 +98,21 @@
 <script>
   const noBtn = document.getElementById("no");
   const text = document.getElementById("text");
+  const sub = document.getElementById("sub");
 
   let count = 0;
 
   const phrases = [
-    "Are you sure? 🥺❄️",
-    "C’mon don’t do this 😭",
-    "My heart 💔",
+    "Are you sure Snowy 🥺❄️",
+    "C’mon don’t do this ba9arati 😭🐄",
+    "My heart is breaking 💔❄️",
+    "Think again azwina",
+    "Please foxy 🦊🥺",
+    "You’re freezing my heart ❄️💔",
     "Still no? 🥶",
-    "Please Ikramti 🤍",
-    "That hurts 😢",
-    "Think again 😔",
-    "Almost gone ❄️",
-    "Last chance 💔",
-    "Okay I disappear…"
+    "Think again 💙💙💍❄️",
+    "Last chance Snowy 🤍",
+    "Okay… I disappear 💔❄️"
   ];
 
   function moveNo() {
@@ -124,7 +126,8 @@
       count++;
     } else {
       noBtn.style.display = "none";
-      text.innerHTML = "The NO button gave up ❄️😌";
+      text.innerHTML = "The NO button gave up 😌❄️";
+      sub.innerHTML = "Snowy wins 🤍";
     }
   }
 
@@ -132,11 +135,12 @@
   noBtn.addEventListener("mouseover", moveNo);
 
   document.getElementById("yes").onclick = () => {
-    text.innerHTML = "YEEEEES 💖❄️ I knew it 😍";
+    text.innerHTML = "YEEES 💖❄️ Snowy said YES 😍";
+    sub.innerHTML = "my Snowy forever 🤍❄️";
     noBtn.style.display = "none";
   };
 
-  /* Snow */
+  /* Snow generator */
   for (let i = 0; i < 35; i++) {
     const s = document.createElement("div");
     s.className = "snow";
