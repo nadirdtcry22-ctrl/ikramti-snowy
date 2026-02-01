@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #93c5fd, #dbeafe);
+      background: linear-gradient(135deg, #93c5fd, #e0f2fe);
       height: 100vh;
       margin: 0;
       overflow: hidden;
@@ -16,52 +16,69 @@
       justify-content: center;
       align-items: center;
     }
+
     h1 {
       color: #1e3a8a;
       text-align: center;
       padding: 0 15px;
     }
+
     #beg {
       font-size: 18px;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
       text-align: center;
     }
+
     .buttons {
       position: relative;
-      height: 80px;
+      height: 100px;
+      width: 100%;
+      max-width: 300px;
     }
+
     button {
       font-size: 20px;
-      padding: 12px 30px;
+      padding: 12px 28px;
       border: none;
       border-radius: 30px;
       cursor: pointer;
+      position: absolute;
     }
+
     #yes {
       background-color: #ff4d6d;
       color: white;
-      margin-right: 20px;
+      left: 20px;
     }
+
     #no {
-      background-color: #d1d5db;
-      position: absolute;
+      background-color: #e5e7eb;
+      right: 20px;
     }
-    .cow {
+
+    /* Snow */
+    .snow {
       position: absolute;
-      font-size: 30px;
-      animation: float 12s linear infinite;
-      opacity: 0.8;
+      top: -50px;
+      font-size: 22px;
+      animation: fall linear infinite;
+      opacity: 0.9;
     }
-    @keyframes float {
-      from { transform: translateY(100vh); }
-      to { transform: translateY(-100vh); }
+
+    @keyframes fall {
+      from {
+        transform: translateY(-50px);
+      }
+      to {
+        transform: translateY(110vh);
+      }
     }
   </style>
 </head>
 <body>
 
-<h1 id="question">Would you be my Valentine Ikramti 🤍</h1>
-<p id="beg">ba9arati 🥺💗 please don’t break my heart</p>
+<h1 id="question">Would you be my Valentine Ikramti 🤍❄️</h1>
+<p id="beg">ba9arati 🥺🤍 please don’t break my heart</p>
 
 <div class="buttons">
   <button id="yes">Yes 💖</button>
@@ -73,33 +90,52 @@
   const yesBtn = document.getElementById("yes");
   const question = document.getElementById("question");
   const beg = document.getElementById("beg");
+
   let noCount = 0;
 
+  const noMessages = [
+    "Are you sure? ❄️🥺",
+    "C’mon Ikramti… 🤍",
+    "Don’t break my heart 💔❄️",
+    "I’m begging you 🥺🤍",
+    "Think again 😔❄️",
+    "My heart can’t take this 💔",
+    "Pleaseeee 😭❄️",
+    "You’re being cold 🥶",
+    "Last chance Ikramti 🤍",
+    "Okay… I tried 💔❄️"
+  ];
+
   function moveNo() {
-    noCount++;
-    if (noCount === 3) {
-      question.innerHTML = "Are you sure Ikramti? 💗🤨";
+    if (noCount < 10) {
+      question.innerHTML = noMessages[noCount];
+      noBtn.style.left = Math.random() * (window.innerWidth - 120) + "px";
+      noBtn.style.top = Math.random() * (window.innerHeight - 60) + "px";
+      noCount++;
+    } else {
+      noBtn.style.display = "none";
+      question.innerHTML = "The NO button gave up 😌❄️";
     }
-    noBtn.style.left = Math.random() * (window.innerWidth - 120) + "px";
-    noBtn.style.top = Math.random() * (window.innerHeight - 60) + "px";
   }
 
   noBtn.addEventListener("mouseover", moveNo);
   noBtn.addEventListener("touchstart", moveNo);
 
   yesBtn.addEventListener("click", () => {
-    question.innerHTML = "YEYYY 💖 Ikramti said yes 😍";
-    beg.innerHTML = "my ba9arati forever 🥺🤍";
+    question.innerHTML = "YEYYY 💖❄️ Ikramti said YES 😍";
+    beg.innerHTML = "my ba9arati forever 🤍❄️";
     noBtn.style.display = "none";
   });
 
-  for (let i = 0; i < 15; i++) {
-    const cow = document.createElement("div");
-    cow.className = "cow";
-    cow.innerHTML = "🐄";
-    cow.style.left = Math.random() * 100 + "vw";
-    cow.style.animationDuration = 8 + Math.random() * 10 + "s";
-    document.body.appendChild(cow);
+  /* Snow generator */
+  for (let i = 0; i < 30; i++) {
+    const snow = document.createElement("div");
+    snow.className = "snow";
+    snow.innerHTML = "❄️";
+    snow.style.left = Math.random() * 100 + "vw";
+    snow.style.animationDuration = 5 + Math.random() * 7 + "s";
+    snow.style.fontSize = 16 + Math.random() * 20 + "px";
+    document.body.appendChild(snow);
   }
 </script>
 
