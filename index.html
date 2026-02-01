@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ikramti 🤍 Valentine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #93c5fd, #dbeafe);
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    h1 {
+      color: #1e3a8a;
+      text-align: center;
+      padding: 0 15px;
+    }
+    #beg {
+      font-size: 18px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .buttons {
+      position: relative;
+      height: 80px;
+    }
+    button {
+      font-size: 20px;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+    #yes {
+      background-color: #ff4d6d;
+      color: white;
+      margin-right: 20px;
+    }
+    #no {
+      background-color: #d1d5db;
+      position: absolute;
+    }
+    .cow {
+      position: absolute;
+      font-size: 30px;
+      animation: float 12s linear infinite;
+      opacity: 0.8;
+    }
+    @keyframes float {
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-100vh); }
+    }
+  </style>
+</head>
+<body>
+
+<h1 id="question">Would you be my Valentine Ikramti 🤍</h1>
+<p id="beg">ba9arati 🥺💗 please don’t break my heart</p>
+
+<div class="buttons">
+  <button id="yes">Yes 💖</button>
+  <button id="no">No 💔</button>
+</div>
+
+<script>
+  const noBtn = document.getElementById("no");
+  const yesBtn = document.getElementById("yes");
+  const question = document.getElementById("question");
+  const beg = document.getElementById("beg");
+  let noCount = 0;
+
+  function moveNo() {
+    noCount++;
+    if (noCount === 3) {
+      question.innerHTML = "Are you sure Ikramti? 💗🤨";
+    }
+    noBtn.style.left = Math.random() * (window.innerWidth - 120) + "px";
+    noBtn.style.top = Math.random() * (window.innerHeight - 60) + "px";
+  }
+
+  noBtn.addEventListener("mouseover", moveNo);
+  noBtn.addEventListener("touchstart", moveNo);
+
+  yesBtn.addEventListener("click", () => {
+    question.innerHTML = "YEYYY 💖 Ikramti said yes 😍";
+    beg.innerHTML = "my ba9arati forever 🥺🤍";
+    noBtn.style.display = "none";
+  });
+
+  for (let i = 0; i < 15; i++) {
+    const cow = document.createElement("div");
+    cow.className = "cow";
+    cow.innerHTML = "🐄";
+    cow.style.left = Math.random() * 100 + "vw";
+    cow.style.animationDuration = 8 + Math.random() * 10 + "s";
+    document.body.appendChild(cow);
+  }
+</script>
+
+</body>
+</html>
