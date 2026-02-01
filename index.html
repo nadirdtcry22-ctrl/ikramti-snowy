@@ -25,20 +25,21 @@
 
     #beg {
       font-size: 18px;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       text-align: center;
     }
 
     .buttons {
       position: relative;
-      height: 100px;
-      width: 100%;
-      max-width: 300px;
+      width: 90vw;
+      max-width: 320px;
+      height: 140px;
+      margin-top: 10px;
     }
 
     button {
       font-size: 20px;
-      padding: 12px 28px;
+      padding: 12px 26px;
       border: none;
       border-radius: 30px;
       cursor: pointer;
@@ -48,27 +49,26 @@
     #yes {
       background-color: #ff4d6d;
       color: white;
-      left: 20px;
+      left: 10px;
+      bottom: 10px;
     }
 
     #no {
       background-color: #e5e7eb;
-      right: 20px;
+      right: 10px;
+      bottom: 10px;
     }
 
     /* Snow */
     .snow {
       position: absolute;
-      top: -50px;
-      font-size: 22px;
+      top: -40px;
+      font-size: 20px;
       animation: fall linear infinite;
       opacity: 0.9;
     }
 
     @keyframes fall {
-      from {
-        transform: translateY(-50px);
-      }
       to {
         transform: translateY(110vh);
       }
@@ -80,7 +80,7 @@
 <h1 id="question">Would you be my Valentine Ikramti 🤍❄️</h1>
 <p id="beg">ba9arati 🥺🤍 please don’t break my heart</p>
 
-<div class="buttons">
+<div class="buttons" id="buttonBox">
   <button id="yes">Yes 💖</button>
   <button id="no">No 💔</button>
 </div>
@@ -89,32 +89,43 @@
   const noBtn = document.getElementById("no");
   const yesBtn = document.getElementById("yes");
   const question = document.getElementById("question");
-  const beg = document.getElementById("beg");
+  const box = document.getElementById("buttonBox");
 
   let noCount = 0;
 
-  const noMessages = [
-    "Are you sure? ❄️🥺",
-    "C’mon Ikramti… 🤍",
-    "Don’t break my heart 💔❄️",
-    "I’m begging you 🥺🤍",
-    "Think again 😔❄️",
-    "My heart can’t take this 💔",
-    "Pleaseeee 😭❄️",
+  const messages = [
+    "Are you sure? 🥺❄️",
+    "C’mon Ikramti 🤍",
+    "Don’t break my heart 💔",
+    "Pleaseeee 🥺❄️",
     "You’re being cold 🥶",
-    "Last chance Ikramti 🤍",
-    "Okay… I tried 💔❄️"
+    "My heart is shaking 💔❄️",
+    "Think again 😭",
+    "Almost gone 😔❄️",
+    "Last chance 🤍",
+    "Okay… I give up 💔❄️"
   ];
 
   function moveNo() {
     if (noCount < 10) {
-      question.innerHTML = noMessages[noCount];
-      noBtn.style.left = Math.random() * (window.innerWidth - 120) + "px";
-      noBtn.style.top = Math.random() * (window.innerHeight - 60) + "px";
+      question.innerHTML = messages[noCount];
+
+      const boxRect = box.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+
+      const maxX = boxRect.width - btnRect.width;
+      const maxY = boxRect.height - btnRect.height;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+
       noCount++;
     } else {
       noBtn.style.display = "none";
-      question.innerHTML = "The NO button gave up 😌❄️";
+      question.innerHTML = "The NO button escaped ❄️😌";
     }
   }
 
@@ -123,7 +134,7 @@
 
   yesBtn.addEventListener("click", () => {
     question.innerHTML = "YEYYY 💖❄️ Ikramti said YES 😍";
-    beg.innerHTML = "my ba9arati forever 🤍❄️";
+    document.getElementById("beg").innerHTML = "my ba9arati forever 🤍❄️";
     noBtn.style.display = "none";
   });
 
@@ -133,8 +144,8 @@
     snow.className = "snow";
     snow.innerHTML = "❄️";
     snow.style.left = Math.random() * 100 + "vw";
-    snow.style.animationDuration = 5 + Math.random() * 7 + "s";
-    snow.style.fontSize = 16 + Math.random() * 20 + "px";
+    snow.style.animationDuration = 5 + Math.random() * 6 + "s";
+    snow.style.fontSize = 14 + Math.random() * 20 + "px";
     document.body.appendChild(snow);
   }
 </script>
